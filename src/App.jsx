@@ -1,34 +1,20 @@
-const todoList = [
-  {
-    title: "Cooking",
-    object_id: 1,
-  },
-  {
-    title: "Studing",
-    object_id: 1,
-  },
-  {
-    title: "Cleaning",
-    object_id: 1,
-  },
-];
+import * as React from "react";
+import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
 
 function App() {
+  const [todoList, setTodoList] = React.useState([]);
+  const addTodo = (newTodo) => {
+    setTodoList([...todoList, newTodo]);
+  };
   return (
     <div>
       <h1>Todo List</h1>
-      <ul>
-        {todoList.map(function (item) {
-          return <li key={item.object_id}>{item.title}</li>;
-        })}
-      </ul>
+      <TodoList todoList={todoList} />
+      <hr />
+      <AddTodoForm addTodo={addTodo} />
     </div>
   );
 }
 
 export default App;
-
-//using arrow function
-// {todoList.map((item) => (
-//   <li key={item.object_id}>{item.title}</li>
-// ))}
